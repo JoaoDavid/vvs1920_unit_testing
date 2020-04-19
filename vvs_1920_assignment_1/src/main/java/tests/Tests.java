@@ -1,8 +1,11 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -110,7 +113,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void longestPrefixOfEmptyAllInstructions() {
+	public void longestPrefixOfAllInstructions() {
 		/* Query "c"
 		 * 						"d","val"
 		 * 					/		|		\
@@ -120,5 +123,49 @@ public class Tests {
 		 * 						  /		  |		  \
 		 * 					  null	    null	   null
 		 * */
+		String query = "c";
+		String value = "val";
+		tstStruct.put("d", value);
+		tstStruct.put("b", value);
+		tstStruct.put("c", value);
+		assertEquals(tstStruct.longestPrefixOf(query), query);
+	}
+	
+	@Test
+	public void keysTest() {
+		assertFalse(tstStruct.keys().iterator().hasNext());
+	}
+	
+	@Test
+	public void keysWithPrefixNull() {
+		String prefix = null;
+	    assertThrows(IllegalArgumentException.class, () -> {
+	    	tstStruct.keysWithPrefix(prefix);
+		});
+	}
+	
+	@Test
+	public void keysWithPrefixEmpty() {
+		String prefix = "somePrefix";
+	    assertFalse(tstStruct.keysWithPrefix(prefix).iterator().hasNext());
+	}
+	
+	@Test
+	public void keysWithPrefixContains() {
+		String keyPrefix = "c";
+		tstStruct.put(keyPrefix, "val");
+		int count = 0;
+		Iterator<String> it = tstStruct.keysWithPrefix(keyPrefix).iterator();
+		while(it.hasNext()) {
+			count++;
+			it.next();
+		}
+	    assertEquals(count,1);
+	}
+	
+	@Test
+	public void keysThatMatchTest() {
+		String pattern = "pattern";
+		assertFalse(tstStruct.keysThatMatch(pattern).iterator().hasNext());
 	}
 }
