@@ -198,7 +198,6 @@ public class LPOPrimePathCoverage {
 		Integer val1 = 1; //pass through 13
 		tst.put("c", val1); //c == c
 		tst.put("cb", val1); //a < b
-		tst.longestPrefixOf(query);
 		assertEquals("c", tst.longestPrefixOf(query));
 	}
 }
