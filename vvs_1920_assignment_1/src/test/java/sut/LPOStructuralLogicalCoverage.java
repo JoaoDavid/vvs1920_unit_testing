@@ -100,6 +100,7 @@ public class LPOStructuralLogicalCoverage {
 	
 	/**
 	 * Reach & cover: !p1,!c1,!p2,!c2,p3,c3,c4,!p3,!c4,!c3,!p4,!c5,!p5,!c6,!p6,!c7
+	 * Teste espcifico para fazer cover a !c4
 	 */
 	@Test
 	public void slTest7 () {
