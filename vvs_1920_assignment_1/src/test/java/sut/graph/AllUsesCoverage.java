@@ -20,6 +20,9 @@ public class AllUsesCoverage {
 		tst = new TST<>();
 	}
 
+	/**
+	 * Test path: [1,2]
+	 */
 	@Test
 	public void t1() {
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -27,28 +30,43 @@ public class AllUsesCoverage {
 		});		
 	}
 
+	/**
+	 * Test path: [1,3,4]
+	 */
 	@Test
 	public void t2() {
 		assertNull(tst.longestPrefixOf(""));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,7]
+	 */
 	@Test
 	public void t3() {
 		assertEquals("", tst.longestPrefixOf("query"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,10,6,7]
+	 */
 	@Test
 	public void t4() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("a"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,9,11,6,7]
+	 */
 	@Test
 	public void t5() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("t"));
 	}
 		
+	/**
+	 * Test path: [1,3,5,6,8,9,12,13,14,6,8,9,12,14,6,8,9,12,13,14,6,7]
+	 */
 	@Test
 	public void t6() {
 		tst.put("sea", 1);
@@ -58,6 +76,9 @@ public class AllUsesCoverage {
 		assertEquals("sea", tst.longestPrefixOf("sea"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,9,12,14,6,8,9,12,14,6,8,9,11,6,7]
+	 */
 	@Test
 	public void t7() {
 		tst.put("sea", 1);
@@ -66,6 +87,9 @@ public class AllUsesCoverage {
 		assertEquals("", tst.longestPrefixOf("set"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,10,6,8,9,11,6,8,9,12,13,14,6,7]
+	 */
 	@Test
 	public void t8() {
 		tst.put("sea", 1);
@@ -74,6 +98,9 @@ public class AllUsesCoverage {
 		assertEquals("c", tst.longestPrefixOf("c"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,10,6,8,10,6,8,9,12,13,14,6,7]
+	 */
 	@Test
 	public void t9() {
 		tst.put("sea", 1);
@@ -82,6 +109,9 @@ public class AllUsesCoverage {
 		assertEquals("b", tst.longestPrefixOf("b"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,9,11,6,8,9,11,6,8,9,12,13,14,6,7]
+	 */
 	@Test
 	public void t10() {
 		tst.put("sea", 1);
@@ -90,18 +120,27 @@ public class AllUsesCoverage {
 		assertEquals("w", tst.longestPrefixOf("w"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,9,12,14,6,8,10,6,7]
+	 */
 	@Test
 	public void t11() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("sd"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,9,12,14,6,8,9,11,6,7]
+	 */
 	@Test
 	public void t12() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("su"));
 	}
 	
+	/**
+	 * Test path: [1,3,5,6,8,9,11,6,8,10,6,7]
+	 */
 	@Test
 	public void t13() {
 		tst.put("sea", 1);
