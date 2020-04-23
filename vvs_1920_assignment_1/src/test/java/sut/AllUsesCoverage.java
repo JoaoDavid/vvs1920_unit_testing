@@ -46,35 +46,9 @@ public class AllUsesCoverage {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("t"));
 	}
-	
+		
 	@Test
 	public void t6() {
-		tst.put("sea", 1);
-		assertEquals("", tst.longestPrefixOf("s"));
-	}
-	
-	@Test
-	public void t7() {
-		tst.put("s", 1);
-		assertEquals("s", tst.longestPrefixOf("s"));
-	}
-	
-	@Test
-	public void t8() {
-		tst.put("s", 1);
-		tst.put("a", 2);
-		assertEquals("a", tst.longestPrefixOf("a"));
-	}
-	
-	@Test
-	public void t9() {
-		tst.put("s", 1);
-		tst.put("u", 2);
-		assertEquals("u", tst.longestPrefixOf("u"));
-	}
-	
-	@Test
-	public void t10() {
 		tst.put("sea", 1);
 		tst.put("s", 2);
 		tst.put("e", 3);
@@ -83,7 +57,7 @@ public class AllUsesCoverage {
 	}
 	
 	@Test
-	public void t11() {
+	public void t7() {
 		tst.put("sea", 1);
 		tst.put("t", 2);
 		tst.put("a", 4);
@@ -91,7 +65,7 @@ public class AllUsesCoverage {
 	}
 	
 	@Test
-	public void t12() {
+	public void t8() {
 		tst.put("sea", 1);
 		tst.put("ball", 2);
 		tst.put("c", 3);
@@ -99,7 +73,7 @@ public class AllUsesCoverage {
 	}
 	
 	@Test
-	public void t13() {
+	public void t9() {
 		tst.put("sea", 1);
 		tst.put("cat", 2);
 		tst.put("b", 3);
@@ -107,7 +81,7 @@ public class AllUsesCoverage {
 	}
 	
 	@Test
-	public void t14() {
+	public void t10() {
 		tst.put("sea", 1);
 		tst.put("up", 2);
 		tst.put("w", 3);
@@ -115,19 +89,19 @@ public class AllUsesCoverage {
 	}
 	
 	@Test
-	public void t15() {
+	public void t11() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("sd"));
 	}
 	
 	@Test
-	public void t16() {
+	public void t12() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("su"));
 	}
 	
 	@Test
-	public void t17() {
+	public void t13() {
 		tst.put("sea", 1);
 		tst.put("w", 2);
 		assertEquals("", tst.longestPrefixOf("t"));
