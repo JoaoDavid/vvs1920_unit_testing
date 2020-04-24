@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Iterator;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author PC
@@ -21,7 +21,7 @@ public class InstructionCoverageTest {
 
 	TST<Integer> tst;
 
-	@BeforeEach
+	@Before
 	public void initializeObject() {
 		tst = new TST<>();
 	}
