@@ -13,8 +13,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author PC
- *
+ * The test methods within this class focus on the Instruction Coverage of all the TST's public methods
+ * 
+ * By running this class as Coverage, and then expanding the TST class in the Coverage tab,
+ * we can conclude that all public methods have 100% coverage and 0 missed instructions
+ * 
  */
 @DisplayName("Instruction Coverage Test")
 public class InstructionCoverageTest {
@@ -32,13 +35,6 @@ public class InstructionCoverageTest {
 	}
 
 	@Test
-	public void sizeNonZeroTest() {
-		int numKeys = 7;
-		putKeys(numKeys);
-		assertEquals(numKeys, tst.size());
-	}
-
-	@Test
 	public void containsNullKey() {
 		String key = null;
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -52,18 +48,6 @@ public class InstructionCoverageTest {
 		assertFalse(tst.contains(key));
 		tst.put(key, 1);
 		assertTrue(tst.contains(key));
-	}	
-	
-	/**
-	 * Puts keys: key0, key1, key2 , ..., key(numKeys-1)
-	 * 
-	 * @param numKeys number of keys to be inserted in the data structure
-	 */
-	private void putKeys(int numKeys) {
-		String keyPrefix = "key";
-		for (int i = 0; i < numKeys; i++) {
-			tst.put(keyPrefix + i, i);
-		}
 	}
 
 	@Test
@@ -112,14 +96,6 @@ public class InstructionCoverageTest {
 		int size = tst.size();
 		tst.put(key,value);
 		assertEquals(size+1, tst.size());
-	}
-	
-	@Test
-	public void putDuplicateKey() {
-		int numKeys = 7;
-		putKeys(numKeys);
-		putKeys(numKeys);
-		assertEquals(numKeys, tst.size());
 	}
 
 	@Test
