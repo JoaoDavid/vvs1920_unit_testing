@@ -17,7 +17,7 @@ public class TSTGenerator extends Generator<TST<Integer>>{
 	private int minPuts = 0;
 	private int maxPuts = 1000;
 	
-	protected TSTGenerator(Class<TST<Integer>> type) {
+	public TSTGenerator(Class<TST<Integer>> type) {
 		super(type);
 	}
 
@@ -30,7 +30,7 @@ public class TSTGenerator extends Generator<TST<Integer>>{
 			String key = generateString(random);
 			tst.put(key, val);
 		}
-		return null;
+		return tst;
 	}
 	
 	private String generateString(SourceOfRandomness random) {
@@ -49,7 +49,7 @@ public class TSTGenerator extends Generator<TST<Integer>>{
 	 * @param tst2 - Trie to compare to
 	 * @return true if tries are equal, false otherwise
 	 */
-	public boolean equals(TST<Integer> tst1, TST<Integer> tst2) {
+	public static boolean equals(TST<Integer> tst1, TST<Integer> tst2) {
 		if(tst1.size() != tst2.size()) {
 			return false;
 		}
@@ -80,7 +80,7 @@ public class TSTGenerator extends Generator<TST<Integer>>{
 	 * @param key - key to be deleted
 	 * @param tst - trie containing the key
 	 */
-	public void delete(String key, TST<Integer> tst) {
+	public static void delete(String key, TST<Integer> tst) {
 		if(!tst.contains(key)) {
 			System.out.println("Key does not exist in trie");
 			return;
