@@ -61,9 +61,9 @@
 \subsection{contains(String key)}
 \begin{lstlisting}
     public boolean contains(String key) {
-        if (key == null) 
-            throw new IllegalArgumentException("argument to contains() is null");
-        return get(key) != null;
+        if (key == null)  //I1
+            throw new IllegalArgumentException("argument to contains() is null"); //I2
+        return get(key) != null; //I3
     }
 \end{lstlisting}
 
@@ -80,14 +80,14 @@
 \subsection{get(String key)}
 \begin{lstlisting}
 public T get(String key) {
-   if (key == null)
-       throw new IllegalArgumentException("calls get() with null argument");
-   if (key.length() == 0) 
-       throw new IllegalArgumentException("key must have length >= 1");
-   Node<T> x = get(root, key, 0);
-   if (x == null) 
-      return null;
-   return x.val;
+   if (key == null) //I1
+       throw new IllegalArgumentException("calls get() with null argument"); //I2
+   if (key.length() == 0) //I3
+       throw new IllegalArgumentException("key must have length >= 1"); //I4
+   Node<T> x = get(root, key, 0); //I5
+   if (x == null) //I6
+      return null; //I7
+   return x.val; //I8
 }
 \end{lstlisting}
 
@@ -106,11 +106,11 @@ public T get(String key) {
 \subsection{put(String key, T val)}
 \begin{lstlisting}
 public void put(String key, T val) {
-   if (key == null)
-      throw new IllegalArgumentException("calls put() with null key");
-   if (!contains(key)) 
-      n++;
-   root = put(root, key, val, 0);
+   if (key == null) //I1
+      throw new IllegalArgumentException("calls put() with null key"); //I2
+   if (!contains(key)) //I3
+      n++; //I4
+   root = put(root, key, val, 0); //I5
 }
 \end{lstlisting}
 
@@ -128,25 +128,25 @@ public void put(String key, T val) {
 \subsection{longestPrefixOf(String query)}
 \begin{lstlisting}
 public String longestPrefixOf(String query) {
-   if (query == null)
-      throw new IllegalArgumentException("calls longestPrefixOf() with null argument");
-   if (query.length() == 0) 
-      return null;
-   int length = 0;
-   Node<T> x = root;
-   int i = 0;
-   while (x != null && i < query.length()) {
-      char c = query.charAt(i);
-      if      (c < x.c) x = x.left;
-      else if (c > x.c) x = x.right;
+   if (query == null) //I1
+      throw new IllegalArgumentException("calls longestPrefixOf() with null argument"); //I2
+   if (query.length() == 0) //I3
+      return null; //I4
+   int length = 0; //I5
+   Node<T> x = root; //I6
+   int i = 0; //I7
+   while (x != null /*I8*/ && i < query.length() /*I9*/) {
+      char c = query.charAt(i); //I10
+      if      (c < x.c) /*I11*/ x = x.left; //I12
+      else if (c > x.c) /*I13*/ x = x.right; //I14
       else {
-         i++;
-         if (x.val != null) 
-            length = i;
-         x = x.mid;
+         i++; //I15
+         if (x.val != null) //I15
+            length = i; //I17
+         x = x.mid; //I18
       }
    }
-   return query.substring(0, length);
+   return query.substring(0, length); //I19
 }
 \end{lstlisting}
 
@@ -156,8 +156,8 @@ public String longestPrefixOf(String query) {
  \hline
  Test Case & Values & Expected / Actual & IC\\ \hline
  longestPrefixOfNull & null & IAE & I1, I2 \\ \hline
- longestPrefixOfEmptyString & "" & null & I1, I3, I4 \\ \hline
- longestPrefixOfAllInstructions & "c" & "c" & \makecell{I1, I3, I5, I6,\\ I7, I8, I9, I10, \\ I11, I12, I13, I14, \\ I15, I16, I17, I18, I19} \\ \hline
+ \makecell{longestPrefixOf\\EmptyString} & "" & null & I1, I3, I4 \\ \hline
+ \makecell{longestPrefixOf\\AllInstructions} & "c" & "c" & \makecell{I1, I3, I5, I6,\\ I7, I8, I9, I10, \\ I11, I12, I13, I14, \\ I15, I16, I17, I18, I19} \\ \hline
 \end{tabular}
 \end{table}
 
@@ -165,9 +165,9 @@ public String longestPrefixOf(String query) {
 \subsection{keys()}
 \begin{lstlisting}
 public Iterable<String> keys() {
-   Queue<String> queue = new LinkedList<>();
-   collect(root, new StringBuilder(), queue);
-   return queue;
+   Queue<String> queue = new LinkedList<>(); //I1
+   collect(root, new StringBuilder(), queue); //I2
+   return queue; //I3
 }
 \end{lstlisting}
 
@@ -184,16 +184,16 @@ public Iterable<String> keys() {
 \subsection{keysWithPrefix(String prefix)}
 \begin{lstlisting}
 public Iterable<String> keysWithPrefix(String prefix) {
-    if (prefix == null)
-        throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
-    Queue<String> queue = new LinkedList<>();
-    Node<T> x = get(root, prefix, 0);
-    if (x == null) 
-        return queue;
-    if (x.val != null) 
-        queue.add(prefix);
-        collect(x.mid, new StringBuilder(prefix), queue);
-        return queue;
+    if (prefix == null) //I1
+        throw new IllegalArgumentException("calls keysWithPrefix() with null argument"); //I2
+    Queue<String> queue = new LinkedList<>(); //I3
+    Node<T> x = get(root, prefix, 0); //I4
+    if (x == null) //I5
+        return queue; //I6
+    if (x.val != null)  //I7
+        queue.add(prefix); //I8
+        collect(x.mid, new StringBuilder(prefix), queue); //I9
+        return queue; //I10
 }
 \end{lstlisting}
 
@@ -212,9 +212,9 @@ public Iterable<String> keysWithPrefix(String prefix) {
 \subsection{keysThatMatch(String pattern)}
 \begin{lstlisting}
 public Iterable<String> keysThatMatch(String pattern) {
-    Queue<String> queue = new LinkedList<>();
-    collect(root, new StringBuilder(), 0, pattern, queue);
-    return queue;
+    Queue<String> queue = new LinkedList<>(); //I1
+    collect(root, new StringBuilder(), 0, pattern, queue); //I2
+    return queue; //I3
 }
 \end{lstlisting}
 
