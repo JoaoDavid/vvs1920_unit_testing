@@ -227,7 +227,15 @@ public Iterable<String> keysThatMatch(String pattern) {
 \end{tabular}
 \end{table}
 
+
+
 \section{Edge Coverage}
+
+\begin{figure}[htb]
+  	\centering
+  	\includegraphics[scale=0.15]{longestPrefixOfGraph.png}
+  	\caption{longestPrefixOf's Graph}
+\end{figure}
 
 
 \section{Prime Path Coverage}
@@ -235,6 +243,54 @@ public Iterable<String> keysThatMatch(String pattern) {
 
 
 \section{All-Uses Coverage }
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c |} 
+ \hline
+ \textbf{nodes \& edges : I} & \textbf{def(I}) & \textbf{use(I)} \\ \hline
+ 1                      & \{root, query\} & \{\} \\ \hline
+ (1,2), (1,3)           & \{\} & \{query\} \\ \hline
+ 3                      & \{\} & \{\} \\ \hline
+ (3,4), (3,5)           & \{\} & \{query\} \\ \hline
+ 4                      & \{\} & \{\} \\ \hline
+ 5                      & \{length, x, i\} & \{root\} \\ \hline
+ (5,6)                  & \{\} & \{\} \\ \hline
+ 6                      & \{\} & \{\} \\ \hline
+ (6,7), (6,8)           & \{\} & \{x, i, query\} \\ \hline
+ 7                      & \{\} & \{query, length\} \\ \hline
+ 8                      & \{c\} & \{i\} \\ \hline
+ (8,9), (8,10)          & \{\} & \{c, x\} \\ \hline
+ 9                      & \{\} & \{\} \\ \hline
+ 10                     & \{x\} & \{x\} \\ \hline
+ (10,6), (11,6), (14,6) & \{\} & \{\} \\ \hline
+ (9,11), (9,12)         & \{\} & \{c, x\} \\ \hline
+ 12                     & \{x\} & \{x\} \\ \hline
+ 12                     & \{i\} & \{i\} \\ \hline
+ (12,13), (12,14)       & \{\} & \{x\} \\ \hline
+ 13                     & \{length\} & \{i\} \\ \hline
+ 14                     & \{x\} & \{x\} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c |} 
+ \hline
+ \textbf{var} & \textbf{node} & \textbf{du(node,var)} \\ \hline
+ query        & 1 & [1,2], [1,3], [1,3,4], [1,3,5], [1,3,5,6,7], [1,3,5,6,8] \\ \hline
+ root         & 1 & [1,3,5] \\ \hline
+ length       & 5 & [5,6,7] \\ \hline
+ length       & 13 & [13,14,6,7] \\ \hline
+ x            & 5 & \makecell{[5,6,7], [5,6,8], [5,6,8,10], [5,6,8,9], [5,6,8,9,11] \\\ [5,6,8,9,12], [5,6,8,9,12,13], [5,6,8,9,12,13,14], [5,6,8,9,12,14]} \\ \hline
+ x            & 10 & \makecell{[10,6,7], [10,6,8], [10,6,8,10], [10,6,8,9] \\\ [10,6,8,9,11], [10,6,8,9,12], [10,6,8,9,12,13] \\\ [10,6,8,9,12,13,14], [10,6,8,9,12,14]} \\ \hline
+ x            & 11 & \makecell{[11,6,7], [11,6,8], [11,6,8,10], [11,6,8,9] \\\ [11,6,8,9,11], [11,6,8,9,12], [11,6,8,9,12,13] \\\ [11,6,8,9,12,13,14], [11,6,8,9,12,14]} \\ \hline
+ x            & 14 & \makecell{[14,6,7], [14,6,8], [14,6,8,10], [14,6,8,9] \\\ [14,6,8,9,11], [14,6,8,9,12], [14,6,8,9,12,13] \\\ [14,6,8,9,12,13,14], [14,6,8,9,12,14]} \\ \hline
+ i            & 5 & [5,6,7], [5,6,8], [5,6,8,9,12], [5,6,8,9,12,13] \\ \hline
+ i            & 12 & \makecell{[12,13], [12,13,14,6,7], [12,13,14,6,8] \\\ [12,13,14,6,8,9,12], [12,14,6,7], [12,14,6,8], [12,14,6,8,9,12]} \\ \hline
+ c            & 8 & [8,9], [8,10], [8,9,11], [8,9,12] \\ \hline
+\end{tabular}
+\end{table}
 
 
 \section{Logic-based Coverage}
