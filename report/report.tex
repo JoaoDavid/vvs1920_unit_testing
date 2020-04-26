@@ -1,0 +1,266 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc} % input encoding
+\usepackage[T1]{fontenc} % Use an 8-bit font encoding, so that ã is a
+                         % single glyph in the font. Yields better
+                         % hyphenation and better cut-and-paste from pdf
+\usepackage{times} % Comment this line you you want the default font, Computer Roman
+% \usepackage[portuguese]{babel} % Uncomment this file you plan to write in Portuguese
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{makecell}
+\graphicspath{ {./images/} }
+\sloppy
+
+\lstset{frame=tb,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{TST JUnit Testing \\
+  \Large Software Verification and Validation \\ 2019--2020
+}
+\author{
+  João David\\49448
+  \and
+  Ye Yang\\49521
+}
+\date{09/05/2020}
+
+\begin{document}
+\maketitle
+
+\section{Instruction Coverage}
+\subsection{size()}
+\begin{lstlisting}
+    public int size() {
+        return n; //I1
+    }
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ sizeZeroTest & - & 0 & I1 \\ \hline
+
+\end{tabular}
+\end{table}
+
+\subsection{contains(String key)}
+\begin{lstlisting}
+    public boolean contains(String key) {
+        if (key == null) 
+            throw new IllegalArgumentException("argument to contains() is null");
+        return get(key) != null;
+    }
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ containsNullKey & null & IAE & I1, I2 \\ \hline
+ containsNonNullKey & "someKey" & false & I1, I3 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{get(String key)}
+\begin{lstlisting}
+public T get(String key) {
+   if (key == null)
+       throw new IllegalArgumentException("calls get() with null argument");
+   if (key.length() == 0) 
+       throw new IllegalArgumentException("key must have length >= 1");
+   Node<T> x = get(root, key, 0);
+   if (x == null) 
+      return null;
+   return x.val;
+}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ getNullKey & null & IAE & I1, I2 \\ \hline
+ getEmptyStringKey & "" & IAE & I1, I3, I4 \\ \hline
+ getNonExistentKey & “someKey” & null & I1, I3, I5, I6, I7 \\ \hline
+ getExistentKey & “key” & <value> & I1, I3, I5, I6, I8 \\ \hline 
+\end{tabular}
+\end{table}
+
+\subsection{put(String key, T val)}
+\begin{lstlisting}
+public void put(String key, T val) {
+   if (key == null)
+      throw new IllegalArgumentException("calls put() with null key");
+   if (!contains(key)) 
+      n++;
+   root = put(root, key, val, 0);
+}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ putNullKey & null, 1 & IAE & I1, I2 \\ \hline
+ putValidNewKey & “someKey”, 1 & NoExep & I1, I3, I4, I5 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{longestPrefixOf(String query)}
+\begin{lstlisting}
+public String longestPrefixOf(String query) {
+   if (query == null)
+      throw new IllegalArgumentException("calls longestPrefixOf() with null argument");
+   if (query.length() == 0) 
+      return null;
+   int length = 0;
+   Node<T> x = root;
+   int i = 0;
+   while (x != null && i < query.length()) {
+      char c = query.charAt(i);
+      if      (c < x.c) x = x.left;
+      else if (c > x.c) x = x.right;
+      else {
+         i++;
+         if (x.val != null) 
+            length = i;
+         x = x.mid;
+      }
+   }
+   return query.substring(0, length);
+}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ longestPrefixOfNull & null & IAE & I1, I2 \\ \hline
+ longestPrefixOfEmptyString & "" & null & I1, I3, I4 \\ \hline
+ longestPrefixOfAllInstructions & "c" & "c" & \makecell{I1, I3, I5, I6,\\ I7, I8, I9, I10, \\ I11, I12, I13, I14, \\ I15, I16, I17, I18, I19} \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{keys()}
+\begin{lstlisting}
+public Iterable<String> keys() {
+   Queue<String> queue = new LinkedList<>();
+   collect(root, new StringBuilder(), queue);
+   return queue;
+}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ keysTest & - & Empty Iterator & I1, I2, I3 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{keysWithPrefix(String prefix)}
+\begin{lstlisting}
+public Iterable<String> keysWithPrefix(String prefix) {
+    if (prefix == null)
+        throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
+    Queue<String> queue = new LinkedList<>();
+    Node<T> x = get(root, prefix, 0);
+    if (x == null) 
+        return queue;
+    if (x.val != null) 
+        queue.add(prefix);
+        collect(x.mid, new StringBuilder(prefix), queue);
+        return queue;
+}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ keysWithPrefixNull & null & IAE & I1, I2 \\ \hline
+ \makecell{keysWithPrefix\\NonExistentPrefix} & "prefix" & Iterator (size 0) & I1, I3, I4, I5, I6 \\ \hline
+ \makecell{keysWithPrefix\\ExistentPrefix} & "c" & Iterator (size 1) & \makecell{I1, I3, I4, I5, \\ I6, I7, I8, I9, I10} \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{keysThatMatch(String pattern)}
+\begin{lstlisting}
+public Iterable<String> keysThatMatch(String pattern) {
+    Queue<String> queue = new LinkedList<>();
+    collect(root, new StringBuilder(), 0, pattern, queue);
+    return queue;
+}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ keysThatMatchTest & "pattern" & Iterator (size 0) & I1, I2, I3 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Edge Coverage}
+
+
+\section{Prime Path Coverage}
+
+
+
+\section{All-Uses Coverage }
+
+
+\section{Logic-based Coverage}
+
+
+
+
+
+\begin{thebibliography}{9}
+\bibitem{silk} 
+SiLK - CERT NetSA
+\url{https://tools.netsa.cert.org/silk/docs.html}
+
+\bibitem{ports} 
+List of TCP and UDP port numbers
+\url{https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers}
+
+
+
+\end{thebibliography}
+
+
+\bibliographystyle{plain}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

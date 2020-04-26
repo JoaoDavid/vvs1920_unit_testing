@@ -4,19 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Iterator;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 /**
  * The test methods within this class focus on the Instruction Coverage of all the TST's public methods
  * 
  * By running this class as Coverage, and then expanding the TST class in the Coverage tab,
  * we can conclude that all public methods have 100% coverage and 0 missed instructions
+ * 
+ * Instruction Covered by each test methods is represented in a table in the report document
  * 
  */
 @DisplayName("Instruction Coverage Test")
@@ -46,8 +47,6 @@ public class InstructionCoverageTest {
 	public void containsNonNullKey() {
 		String key = "someKey";
 		assertFalse(tst.contains(key));
-		tst.put(key, 1);
-		assertTrue(tst.contains(key));
 	}
 
 	@Test
@@ -109,7 +108,7 @@ public class InstructionCoverageTest {
 	@Test
 	public void longestPrefixOfEmptyString() {
 		String query = "";
-		assertEquals(null, tst.longestPrefixOf(query));
+		assertNull(tst.longestPrefixOf(query));
 	}
 
 	@Test
