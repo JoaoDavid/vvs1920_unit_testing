@@ -10,8 +10,15 @@ import org.junit.Test;
 
 import sut.TST;
 
+/**
+ * The test methods within this class focus on the All Uses Coverage of the TST's longestPrefixOf method graph
+ * 
+ * Each test method has it's test path commented
+ * The detailed documentation regarding AUC is in the report (section All Uses Coverage)
+ * 
+ */
 @DisplayName("All Uses Coverage Test")
-public class AllUsesCoverage {	
+public class AllUsesCoverageTest {	
 
 	TST<Integer> tst;
 
@@ -24,7 +31,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,2]
 	 */
 	@Test
-	public void t1() {
+	public void allUsesCoverageTest1() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			tst.longestPrefixOf(null);
 		});		
@@ -34,7 +41,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,4]
 	 */
 	@Test
-	public void t2() {
+	public void allUsesCoverageTest2() {
 		assertNull(tst.longestPrefixOf(""));
 	}
 	
@@ -42,7 +49,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,7]
 	 */
 	@Test
-	public void t3() {
+	public void allUsesCoverageTest3() {
 		assertEquals("", tst.longestPrefixOf("query"));
 	}
 	
@@ -50,7 +57,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,10,6,7]
 	 */
 	@Test
-	public void t4() {
+	public void allUsesCoverageTest4() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("a"));
 	}
@@ -59,7 +66,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,11,6,7]
 	 */
 	@Test
-	public void t5() {
+	public void allUsesCoverageTest5() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("t"));
 	}
@@ -68,7 +75,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,12,13,14,6,8,9,12,14,6,8,9,12,13,14,6,7]
 	 */
 	@Test
-	public void t6() {
+	public void allUsesCoverageTest6() {
 		tst.put("sea", 1);
 		tst.put("s", 2);
 		tst.put("e", 3);
@@ -80,7 +87,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,12,14,6,8,9,12,14,6,8,9,11,6,7]
 	 */
 	@Test
-	public void t7() {
+	public void allUsesCoverageTest7() {
 		tst.put("sea", 1);
 		tst.put("t", 2);
 		tst.put("a", 4);
@@ -91,7 +98,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,10,6,8,9,11,6,8,9,12,13,14,6,7]
 	 */
 	@Test
-	public void t8() {
+	public void allUsesCoverageTest8() {
 		tst.put("sea", 1);
 		tst.put("ball", 2);
 		tst.put("c", 3);
@@ -102,7 +109,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,10,6,8,10,6,8,9,12,13,14,6,7]
 	 */
 	@Test
-	public void t9() {
+	public void allUsesCoverageTest9() {
 		tst.put("sea", 1);
 		tst.put("cat", 2);
 		tst.put("b", 3);
@@ -113,7 +120,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,11,6,8,9,11,6,8,9,12,13,14,6,7]
 	 */
 	@Test
-	public void t10() {
+	public void allUsesCoverageTest10() {
 		tst.put("sea", 1);
 		tst.put("up", 2);
 		tst.put("w", 3);
@@ -124,7 +131,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,12,14,6,8,10,6,7]
 	 */
 	@Test
-	public void t11() {
+	public void allUsesCoverageTest11() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("sd"));
 	}
@@ -133,7 +140,7 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,12,14,6,8,9,11,6,7]
 	 */
 	@Test
-	public void t12() {
+	public void allUsesCoverageTest12() {
 		tst.put("sea", 1);
 		assertEquals("", tst.longestPrefixOf("su"));
 	}
@@ -142,10 +149,16 @@ public class AllUsesCoverage {
 	 * Test path: [1,3,5,6,8,9,11,6,8,10,6,7]
 	 */
 	@Test
-	public void t13() {
+	public void allUsesCoverageTest13() {
 		tst.put("sea", 1);
 		tst.put("w", 2);
 		assertEquals("", tst.longestPrefixOf("t"));
 	}
+	
+	/*@Test
+	public void allUsesCoverageTest14() {
+		tst.put("sea", 1);
+		assertEquals("", tst.longestPrefixOf("se"));
+	}*/
 
 }
