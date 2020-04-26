@@ -11,9 +11,9 @@ import sut.TST;
 
 public class TSTGenerator extends Generator<TST<Integer>>{
 	
-	private static final String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int min = 1;
-	private int max = 20;
+	public static final String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private static int min = 1;
+	private static int max = 20;
 	private int minPuts = 0;
 	private int maxPuts = 1000;
 	
