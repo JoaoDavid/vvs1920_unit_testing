@@ -1,4 +1,4 @@
-package sut.graph;
+package sut;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
