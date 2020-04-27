@@ -115,18 +115,4 @@ public class LPOStructuralLogicalCoverage {
 		tst.longestPrefixOf(query);
 		assertEquals("",tst.longestPrefixOf(query));
 	}
-	
-	/**
-	 * Reach & cover: !p1,!c1,!p2,!c2,p3,c3,c4,!p4,!c5,!p5,!c6,!p6,!c7,!p3,!c3,c4
-	 * Teste espcifico para fazer cover a !c3 & c4
-	 */
-	@Test
-	public void slTest8 () {
-		String query = "ca";
-		String key1 = "c";
-		Integer val = null;
-		tst.put(key1, val);
-		tst.longestPrefixOf(query);
-		assertEquals("",tst.longestPrefixOf(query));
-	}
 }
