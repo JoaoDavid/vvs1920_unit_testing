@@ -155,15 +155,12 @@ public class TST<T> {
 			return false;
 		}
 			
-		Iterator<String> it = this.keys().iterator();
-		while(it.hasNext()) {
-			String currKey = it.next();
-			T thisVal = this.get(currKey);
-			T otherVal = other.get(currKey);
-			if(otherVal == null || !thisVal.equals(otherVal)) {
-				return false;
-			}			
-		}
+		Iterable<String> thisIterable = this.keys();
+        for(String currKey : thisIterable){
+            if(!this.get(currKey).equals(other.get(currKey))){
+                return false;
+            }
+        }
 		return true;
 	}
 
