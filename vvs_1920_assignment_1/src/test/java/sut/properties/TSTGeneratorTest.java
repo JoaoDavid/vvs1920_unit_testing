@@ -59,37 +59,24 @@ public class TSTGeneratorTest {
 			tst.delete(key);
 			assertTrue(tst.equals(other));			
 		}
-
-
 	}
 
 	@Property
-	public void strictPrefixTest(@From(TSTGenerator.class) TST<Integer> tst,@InRange(min = "0")  int index) {
-		List<String> keys = new ArrayList<>(tst.size());
-		for (String string : tst.keys()) {
-			if(string.length() >= 2) {
-				keys.add(string);
+	public void strictPrefixTest(@From(TSTGenerator.class) TST<Integer> tst,@InRange(min = "0")  int index, @From(MyStringGenerator.class) String prefix) {
+		Iterable<String> setLargerPrefix = tst.keysWithPrefix(prefix);
+		List<String> listLargerPrexix = new LinkedList<>();
+		setLargerPrefix.forEach(listLargerPrexix::add);
+		if(prefix.length() > 2) {
+			String currStricterPrefix = prefix;
+			for(int i = prefix.length(); i > 2; i--) {
+				System.out.println(currStricterPrefix);
+				currStricterPrefix = currStricterPrefix.substring(0, i);
+				Iterable<String> setCurrPrefix = tst.keysWithPrefix(currStricterPrefix);
+				for (String curr : setCurrPrefix) {
+					assertTrue(listLargerPrexix.contains(curr));
+				}
 			}
 		}
-		if(keys.size() == 0) {
-			System.out.println("vazio");
-		} else {			
-			String largerPrefix = keys.get(index%keys.size());
-			Iterable<String> setLargerPrefix = tst.keysWithPrefix(largerPrefix);
-			Iterable<String> setSmallerPrefix = tst.keysWithPrefix(largerPrefix.substring(0, largerPrefix.length()));
-			List<String> listLargerPrexix = new LinkedList<>();
-			setLargerPrefix.forEach(keys::add);
-			List<String> listSmallerPrexix = new LinkedList<>();
-			setSmallerPrefix.forEach(keys::add);
-
-			assertTrue(listSmallerPrexix.size() >= listLargerPrexix.size());
-			for (String string : listSmallerPrexix) {
-				assertTrue(listLargerPrexix.contains(string));
-			}
-			//System.out.println(largerPrefix);
-		}
-
-
 	}
 
 }
