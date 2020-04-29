@@ -123,8 +123,51 @@ public class TST<T> {
         else                            x.val   = val;
         return x;
     }
-
+    
     /**
+     * Removes the key from the table, if the key exists
+     * otherwise won't change tha table's state
+     * @param key the key
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
+    public void delete(String key) {
+        if (key == null) {
+        	throw new IllegalArgumentException("calls put() with null key");
+        }            
+        if (contains(key)) {
+        	n--;
+        	put(root, key, null, 0);
+        }        
+    }
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof TST<?>))
+			return false;
+		
+		TST<T> other = (TST<T>) obj;
+		if (this.size() != other.size()) {
+			return false;
+		}
+			
+		Iterator<String> it = this.keys().iterator();
+		while(it.hasNext()) {
+			String currKey = it.next();
+			T thisVal = this.get(currKey);
+			T otherVal = other.get(currKey);
+			if(otherVal == null || !thisVal.equals(otherVal)) {
+				return false;
+			}			
+		}
+		return true;
+	}
+
+	/**
      * Returns the string in the symbol table that is the longest prefix of {@code query},
      * or {@code null}, if no such string.
      * @param query the query string
