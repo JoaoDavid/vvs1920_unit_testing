@@ -62,19 +62,34 @@ public class TSTGeneratorTest {
 	}
 
 	@Property
-	public void strictPrefixTest(@From(TSTGenerator.class) TST<Integer> tst,@InRange(min = "0")  int index, @From(MyStringGenerator.class) String prefix) {
-		Iterable<String> setLargerPrefix = tst.keysWithPrefix(prefix);
-		List<String> listLargerPrexix = new LinkedList<>();
-		setLargerPrefix.forEach(listLargerPrexix::add);
-		if(prefix.length() > 2) {
-			String currStricterPrefix = prefix;
-			for(int i = prefix.length(); i > 2; i--) {
-				System.out.println(currStricterPrefix);
-				currStricterPrefix = currStricterPrefix.substring(0, i);
-				Iterable<String> setCurrPrefix = tst.keysWithPrefix(currStricterPrefix);
-				for (String curr : setCurrPrefix) {
-					assertTrue(listLargerPrexix.contains(curr));
+	public void strictPrefixTest(@From(TSTGenerator.class) TST<Integer> tst,@InRange(min = "0")  int index, @From(MyStringGenerator.class) String key) {
+		if(key.length() >= 2 ) { //testing only longer keys
+			//Adding several substrings from a certain "key" string, 
+			//e.g. key=potato, will result in inserting: potato, potat, pota, pot, po, p
+			for(int i = key.length(); i > 1; i--) {
+				tst.put(key.substring(0,i), index);
+			}
+			//For instance, the loop verifies that all keys with prefix <x> has all keys with prefix <y>
+			//  <x>              <y>
+			// potat            potato
+			// pota             potat
+			// pot              pota
+			// po               pot
+			// p                po
+			// Therefore we can conclude that keys with prefix p contains all keys with prefix potato
+			Iterable<String> setLongerPrefix = tst.keysWithPrefix(key);
+			List<String> listLongerPrefix = new LinkedList<>();
+			setLongerPrefix.forEach(listLongerPrefix::add);
+			for(int i = key.length()-1; i > 2; i--) {
+				String currStricterPrefix = key.substring(0, i);
+				Iterable<String> setCurrrPrefix = tst.keysWithPrefix(currStricterPrefix);
+				List<String> listCurrPrefix = new LinkedList<>();
+				setCurrrPrefix.forEach(listCurrPrefix::add);
+
+				for (String curr : listLongerPrefix) {
+					assertTrue(listCurrPrefix.contains(curr));
 				}
+				listLongerPrefix = listCurrPrefix;
 			}
 		}
 	}
