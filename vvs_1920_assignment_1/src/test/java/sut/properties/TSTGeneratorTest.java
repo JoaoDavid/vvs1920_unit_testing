@@ -85,7 +85,7 @@ public class TSTGeneratorTest {
 				Iterable<String> setCurrrPrefix = tst.keysWithPrefix(currStricterPrefix);
 				List<String> listCurrPrefix = new LinkedList<>();
 				setCurrrPrefix.forEach(listCurrPrefix::add);
-
+				assertTrue(listLongerPrefix.size() <= listCurrPrefix.size());
 				for (String curr : listLongerPrefix) {
 					assertTrue(listCurrPrefix.contains(curr));
 				}
