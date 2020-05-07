@@ -21,6 +21,9 @@ import sut.TST;
 @RunWith(JUnitQuickcheck.class)
 public class TSTGeneratorTest {	
 
+	/*
+	 * Property: The order of insertion of dierent keys does not change the nal tree value
+	 */
 	@Property
 	public void testOrderInsertion(@From(TSTGenerator.class) TST<Integer> tst) {
 		List<String> keys = new ArrayList<>();
@@ -35,6 +38,9 @@ public class TSTGeneratorTest {
 		assertTrue(tst.equals(newTST));
 	}
 
+	/*
+	 * Property: If you remove all keys from a tree, the tree must be empty
+	 */
 	@Property
 	public void removeAll(@From(TSTGenerator.class) TST<Integer> tst) {
 		Iterator<String> it = tst.keys().iterator();
@@ -47,6 +53,9 @@ public class TSTGeneratorTest {
 		assertTrue(tst.equals(emptyTST));
 	}
 
+	/*
+	 * Property: Given a tree, inserting and then removing the same key value will not change its initial value
+	 */
 	@Property
 	public void insertRemove(@From(TSTGenerator.class) TST<Integer> tst, @From(MyStringGenerator.class) String key, int val) {
 		if(!tst.contains(key)) {
@@ -61,6 +70,9 @@ public class TSTGeneratorTest {
 		}
 	}
 
+	/*
+	 * Property: Selecting a stricter prefix keysWithPrefix returns a strict subset result.
+	 */
 	@Property
 	public void strictPrefixTest(@From(TSTGenerator.class) TST<Integer> tst,@InRange(min = "0")  int index, @From(MyStringGenerator.class) String key) {
 		if(key.length() >= 2 ) { //testing only longer keys

@@ -289,18 +289,34 @@ public void delete(String key) {
 \end{tabular}
 \end{table}
 
+\section{Edge Coverage - EdgeCoverageTest.java}
+
 \begin{figure}[htb]
   	\centering
   	\includegraphics[scale=0.15]{longestPrefixOfGraph.png}
   	\caption{longestPrefixOf's Graph}
 \end{figure}
 
+Graph Edges: [1,2], [1,3], [3,4], [3,5], [5,6], [6,7], [6,8], [8,9], [8,10], [10,6], [9,12], [9,11], [11,6], [12,13], [12,14], [13,14], [14,6]
 
-\section{Edge Coverage}
+\subsection{Test cases}
 
-\section{Prime Path Coverage}
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c |} 
+ \hline
+ Test Case & Test Path & Edges Covered  \\ \hline
+ edgeCoverage1 & [1,2] & [1,2] \\ \hline
+ edgeCoverage2 & [1,3,4] & [1,3], [3,4] \\ \hline
+ edgeCoverage3 & [1,3,5,6,8,10,6,7] & [1,3], [3,5], [5,6], [6,8], [8,10], [10,6], [6,7] \\ \hline
+ edgeCoverage4 & [1,3,5,6,8,9,11,6,7] & [1,3], [3,5], [5,6], [6,8],\newline [8,9], [9,11], [11,6], [6,7] \\ \hline
+ edgeCoverage5 & [1,3,5,6,8,9,12,14,6,7] &  [1,3], [3,5], [5,6], [6,8], [8,9], [9,12], [12,14], [14,6], [6,7] \\ \hline
+ edgeCoverage6 & [1,3,5,6,8,9,12,13,14,6,7] &  [1,3], [3,5], [5,6], [6,8], [8,9], [9,12], [12,14], [14,6], [6,7] \\ \hline
+\end{tabular}
+\end{table}
 
-
+\section[Prime Path Coverage - PrimePathCoverageTest.java]{Prime Path Coverage - \\PrimePathCoverageTest.java}
+For the Prime Path Coverage, we used the graph coverage tool made available to us through the course's moodle page. With this we extracted all the possible prime paths, and all that paths needed in order to cover them, totaling 19 test cases according to the graph previously shown. All the data regarding this test coverage is shown in comments in the above indicated Java class.
 
 \section{All-Uses Coverage }
 
@@ -374,10 +390,42 @@ x            & 10 & \makecell{[10,6,7], [10,6,8], [10,6,8,10], [10,6,8,9], \\\ [
 \end{table}
 
 
-\section{Logic-based Coverage}
+\section[Logic-based Coverage - \\LogicBasedCoverage.java]{Logic-based Coverage - \\LogicBasedCoverage.java}
 
+For our Logic-based coverage we chose the Combinatorial Coverage (CoC) as it covers all the possible permutations of truth values of each clause. In order to guarantee that certain parts of the code is reached, and not only basing it off of truth values of clauses, we also added the reachability predicates from which we based our CoC off of. All the data regarding the analysis can be viewed in the Java class indicated above.
 
+\section{Base Choice Coverage - \\BaseChoiceCoverageTest.java}
+Given the 3 criteria, we separated them in simple blocks that would not overlap each other so as to not have any ambiguous requirements:
+\begin{enumerate}
+	\item \textit{Trie already includes the new key}
+		\begin{itemize}
+			\item Blocks : [true, false]
+		\end{itemize}
+	\item \textit{Trie already includes some new key prefix}
+		\begin{itemize}
+			\item Blocks : [true, false]
+		\end{itemize}
+	\item \textit{Trie is empty}
+		\begin{itemize}
+			\item Blocks : [true, false]
+		\end{itemize}
+\end{enumerate}
 
+The chosen base choice was: \textbf{(true, true, false)} and following are all the test requirements: 
+	\begin{itemize}
+	 	\item (true, true, false)
+	 	\item (false, true, false)
+	 	\item (true, false, false)
+	 	\item (true, true, true)
+	\end{itemize}
+	
+The last test requirement \textbf{(true, true, true)} is unfeasible due to the fact that a tree can not contain a key and at the same time be empty.
+
+The tests used to cover the test requirements can be found in the above mentioned Java source file.
+
+\section{PIT Mutations}
+
+\section{JUnit QuickCheck}
 
 
 \begin{thebibliography}{9}

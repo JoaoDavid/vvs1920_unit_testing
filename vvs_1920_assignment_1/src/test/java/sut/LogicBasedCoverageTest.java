@@ -14,7 +14,7 @@ import sut.TST;
  * therefore it subsumes RACC, CAACC, GACC, CC and PC
  * Since the method in study (longestPrefixOf) is highly complex, it's viable to opt for this criteria
  * 
- * Each test method has it's reach and cover commented
+ * Each test method has its reach and cover commented
  * 
  * p1: c1,       where c1: query == null
  * p2: c2,       where c2: query.length() == 0
