@@ -1,5 +1,6 @@
 package sut;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -182,5 +183,53 @@ public class InstructionCoverageTest {
 		assertEquals(1,tst.size());
 		tst.delete(key);
 		assertEquals(0,tst.size());
+	}
+	
+	@Test
+	public void equalsSame() {
+		assertTrue(tst.equals(tst));
+	}
+	
+	@Test
+	public void equalsNull() {
+		assertFalse(tst.equals(null));
+	}
+	
+	@Test
+	public void equalsNotTrie() {
+		assertFalse(tst.equals(1));
+	}
+	
+	@Test
+	public void equalsDifSize() {
+		String key1 = "key";
+		String key2 = "keys";
+		Integer val = 1;
+		TST<Integer> tst2 = new TST<>();
+		tst2.put(key1, val);
+		tst2.put(key2, val);
+		tst.put(key1, val);
+		assertFalse(tst.equals(tst2));
+	}
+	
+	@Test
+	public void equalsDifContent() {
+		String key1 = "key";
+		String key2 = "something";
+		Integer val = 1;
+		TST<Integer> tst2 = new TST<>();
+		tst2.put(key2, val);
+		tst.put(key1, val);
+		assertFalse(tst.equals(tst2));
+	}
+	
+	@Test
+	public void equalsSameContent() {
+		String key1 = "key";
+		Integer val = 1;
+		TST<Integer> tst2 = new TST<>();
+		tst2.put(key1, val);
+		tst.put(key1, val);
+		assertTrue(tst.equals(tst2));
 	}
 }

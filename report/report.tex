@@ -250,7 +250,44 @@ public void delete(String key) {
 \end{tabular}
 \end{table}
 
-\section{Edge Coverage}
+\subsection{equals(Object obj)}
+\begin{lstlisting}
+	public boolean equals(Object obj) {
+		if (this == obj) //I1
+			return true; //I2
+		if (obj == null) //I3
+			return false; //I4
+		if (!(obj instanceof TST<?>)) //I5
+			return false; //I6
+		
+		TST<T> other = (TST<T>) obj; //I7
+		if (this.size() != other.size()) { //I8
+			return false; //I9
+		}
+			
+		Iterable<String> thisIterable = this.keys(); //I10
+        for(String currKey : thisIterable){ //I11
+            if(!this.get(currKey).equals(other.get(currKey))){ //I12
+                return false; //I13
+            }
+        }
+		return true; //I14
+	}
+\end{lstlisting}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ equalsSame & Same trie object & True & I1, I2 \\ \hline
+ equalsNull & null & False & I1, I3, I4 \\ \hline
+ equalsNotTrie & 1 & False & I1, I3, I5, I6 \\ \hline
+ equalsDifSize & Trie with more keys & False & I1, I3, I5, I7, I8, I9 \\ \hline
+ equalsDifContent & Trie with same keys & True & I1, I3, I5, I7, I8, I10, I11, I12, I14 \\ \hline
+
+\end{tabular}
+\end{table}
 
 \begin{figure}[htb]
   	\centering
@@ -258,6 +295,8 @@ public void delete(String key) {
   	\caption{longestPrefixOf's Graph}
 \end{figure}
 
+
+\section{Edge Coverage}
 
 \section{Prime Path Coverage}
 
