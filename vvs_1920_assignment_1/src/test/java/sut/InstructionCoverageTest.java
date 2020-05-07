@@ -165,4 +165,22 @@ public class InstructionCoverageTest {
 		String pattern = "pattern";
 		assertFalse(tst.keysThatMatch(pattern).iterator().hasNext());
 	}
+	
+	@Test
+	public void deleteNull() {
+		String key = null;
+		assertThrows(IllegalArgumentException.class, () -> {
+			tst.delete(key);
+		});
+	}
+	
+	@Test
+	public void deleteContains() {
+		String key = "key";
+		Integer value = 1;
+		tst.put(key,value);
+		assertEquals(1,tst.size());
+		tst.delete(key);
+		assertEquals(0,tst.size());
+	}
 }

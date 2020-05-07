@@ -227,7 +227,28 @@ public Iterable<String> keysThatMatch(String pattern) {
 \end{tabular}
 \end{table}
 
+\subsection{delete(String key)}
+\begin{lstlisting}
+public void delete(String key) {
+    if (key == null) { //I1
+        throw new IllegalArgumentException("calls put() with null key"); //I2
+    }            
+    if (contains(key)) { //I3
+      	n--; //I4
+    	put(root, key, null, 0); //I5
+    }        
+}
+\end{lstlisting}
 
+\begin{table}[htb]
+\centering
+\begin{tabular}{| c | c | c | c |} 
+ \hline
+ Test Case & Values & Expected / Actual & IC\\ \hline
+ deleteNull & null & IAE & I1, I2 \\ \hline
+ deleteContains & "key" & Iterator (size 0) & I3, I4, I5 \\ \hline
+\end{tabular}
+\end{table}
 
 \section{Edge Coverage}
 
