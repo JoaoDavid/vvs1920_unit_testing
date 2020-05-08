@@ -491,22 +491,6 @@ For the second property, we removed all the keys from a Trie by using the implem
 For the third property, we generated both a random Trie and a String. We then created a new Trie and inserted all the values from the original Trie plus the randomly generated String, after which we remove the same String and asserted that the final Trie is equal to the original Trie.
 
 For the fourth and final property, we also generated a random Trie and String. The string would be inserted in portions into the Trie so that all the prefixes are inserted for later testing. For example, if we have the word \textit{generator} the following keys would be inserted into the Trie: \textit{generator}, \textit{generato}, \textit{generat}, ... , \textit{g}. After the insertion we then get all the key prefixes starting from the longest prefix to the shortest. With each prefix we test that the return of \textbf{keysWithPrefix(prefix)} from a longer (stricter prefix) is always contained inside a shorter (less strict) prefix.
-
-\begin{thebibliography}{9}
-\bibitem{silk} 
-SiLK - CERT NetSA
-\url{https://tools.netsa.cert.org/silk/docs.html}
-
-\bibitem{ports} 
-List of TCP and UDP port numbers
-\url{https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers}
-
-
-
-\end{thebibliography}
-
-
-\bibliographystyle{plain}
 \end{document}
 
 %%% Local Variables:
