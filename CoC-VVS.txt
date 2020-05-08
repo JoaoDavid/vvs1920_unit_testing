@@ -1,0 +1,50 @@
+p1: c1  where c1: query = null
+p2: c2  where c2: query.length() = 0
+p3: c3 && c4  where c3: x ¬= null, c4: i < query.length()
+p4: c5  where c5: c < x.c
+p5: c6  where c6: c > x.c
+p6: c7  where c7: x.val ¬= null
+
+TR(CoC) =  {c1, ¬c1, 
+			c2, ¬c2, 
+			c3 && c4, ¬c3 && c4, c3 && ¬c4, ¬c3 && ¬c4
+			, c5, ¬c5, 
+			c6, ¬c6, 
+			c7, ¬c7}
+			
+
+
+
+#        put        query        expected           reach & cover
+1         -          null          IAE               p1,c1
+2         -           ""           IAE              ¬p1,¬c1, p2,c2
+3        "c"          "a"          true             ¬p1,¬c1, ¬p2,¬c2, p3,c3,c4, p4,c5, ¬p3,¬c3,c4
+4        "c"          "d"          true             ¬p1,¬c1, ¬p2,¬c2, p3,c3,c4, ¬p4,¬c5, p5,c6 ¬p3,¬c3,c4
+5     "c",null        "c"          true             ¬p1,¬c1, ¬p2,¬c2, p3,c3,c4, ¬p4,¬c5, ¬p5,¬c6, ¬p6,¬c7, ¬p3,¬c3,¬c4
+6        "c"          "c"          true             ¬p1,¬c1, ¬p2,¬c2, p3,c3,c4, ¬p4,¬c5, ¬p5,¬c6, p6,c7, ¬p3,¬c3,¬c4
+7   ("c",null)        "c"          true             ¬p1,¬c1, ¬p2,¬c2, p3,c3,c4, ¬p4,¬c5, ¬p5,¬c6, ¬p6,¬c7, ¬p3,c3,¬c4
+   ,("ca",null)                                
+
+
+
+
+
+base choise
+
+(true,true,true)    imp .
+(false,true,true)   imp
+(true,false,true)   imp
+(true,true,false)   .
+(false,false,true)  
+(false,true,false)  .
+(true,false,false)  .
+(false,false,false) 
+
+ * Base choice #2: (false, false, true)
+ * 
+ * Tests: (false, false, true)
+ *        (true, false, true)
+ *        (false, true, true)
+ *        (false, false, false)->unfeasible
+
+

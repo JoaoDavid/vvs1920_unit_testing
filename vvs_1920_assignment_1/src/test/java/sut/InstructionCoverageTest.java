@@ -195,6 +195,7 @@ public class InstructionCoverageTest {
 		assertFalse(tst.equals(null));
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void equalsNotTrie() {
 		assertFalse(tst.equals(1));
