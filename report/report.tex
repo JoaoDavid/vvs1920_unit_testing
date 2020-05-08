@@ -291,7 +291,7 @@ public void delete(String key) {
 
 \section{Edge Coverage - EdgeCoverageTest.java}
 
-\begin{figure}[htb]
+\begin{figure}[!htbp]
   	\centering
   	\includegraphics[scale=0.15]{longestPrefixOfGraph.png}
   	\caption{longestPrefixOf's Graph}
@@ -300,18 +300,17 @@ public void delete(String key) {
 Graph Edges: [1,2], [1,3], [3,4], [3,5], [5,6], [6,7], [6,8], [8,9], [8,10], [10,6], [9,12], [9,11], [11,6], [12,13], [12,14], [13,14], [14,6]
 
 \subsection{Test cases}
-
-\begin{table}[htb]
+\begin{table}[!htbp]
 \centering
 \begin{tabular}{| c | c | c |} 
  \hline
- Test Case & Test Path & Edges Covered  \\ \hline
+ Test Case & Test Path & Edges Covered\\ \hline
  edgeCoverage1 & [1,2] & [1,2] \\ \hline
- edgeCoverage2 & [1,3,4] & [1,3], [3,4] \\ \hline
- edgeCoverage3 & [1,3,5,6,8,10,6,7] & [1,3], [3,5], [5,6], [6,8], [8,10], [10,6], [6,7] \\ \hline
- edgeCoverage4 & [1,3,5,6,8,9,11,6,7] & [1,3], [3,5], [5,6], [6,8],\newline [8,9], [9,11], [11,6], [6,7] \\ \hline
- edgeCoverage5 & [1,3,5,6,8,9,12,14,6,7] &  [1,3], [3,5], [5,6], [6,8], [8,9], [9,12], [12,14], [14,6], [6,7] \\ \hline
- edgeCoverage6 & [1,3,5,6,8,9,12,13,14,6,7] &  [1,3], [3,5], [5,6], [6,8], [8,9], [9,12], [12,14], [14,6], [6,7] \\ \hline
+ edgeCoverage2 & [1,3,4] & [1,3] \\ \hline
+ edgeCoverage3 & [1,3,5,6,8,10,6,7] & \makecell{[1,3], [3,5], [5,6], \\\ [6,8], [8,10], [10,6], [6,7]} \\ \hline
+ edgeCoverage4 & [1,3,5,6,8,9,11,6,7] & \makecell{[1,3], [3,5], [5,6], [6,8],\\\ [8,9], [9,11], [11,6], [6,7]} \\ \hline
+ edgeCoverage5 & [1,3,5,6,8,9,12,14,6,7] & \makecell{[1,3], [3,5], [5,6], [6,8],\\\ [8,9], [9,12], [12,14], [14,6], [6,7]} \\ \hline
+ edgeCoverage6 & [1,3,5,6,8,9,12,13,14,6,7] & \makecell{[1,3], [3,5], [5,6], [6,8], [8,9],\\\ [9,12], [12,13], [13,14], [14,6], [6,7]} \\ \hline
 \end{tabular}
 \end{table}
 
@@ -425,8 +424,16 @@ The tests used to cover the test requirements can be found in the above mentione
 
 \section{PIT Mutations}
 
-\section{JUnit QuickCheck}
+\section[JUnit QuickCheck - TSTGeneratorTest.java]{JUnit QuickCheck - \\TSTGeneratorTest.java}
+In order to test the properties given, we had to create both a Trie and a String generator.
 
+For the first property, we took all the key values from the randomly generated Trie, shuffled the keys and then inserted them back inside a new Trie. At the end we evaluate that this new Trie is equal in content to the original Trie.
+
+For the second property, we removed all the keys from a Trie by using the implemented \textbf{delete()} function, evaluating that the size of the Trie is 0 after finishing the deletion process.
+
+For the third property, we generated both a random Trie and a String. We then created a new Trie and inserted all the values from the original Trie plus the randomly generated String, after which we remove the same String and asserted that the final Trie is equal to the original Trie.
+
+For the fourth and final property, we also generated a random Trie and String. The string would be inserted in portions into the Trie so that all the prefixes are inserted for later testing. For example, if we have the word \textit{generator} the following keys would be inserted into the Trie: \textit{generator}, \textit{generato}, \textit{generat}, ... , \textit{g}. After the insertion we then get all the key prefixes starting from the longest prefix to the shortest. With each prefix we test that the return of \textbf{keysWithPrefix(prefix)} from a longer (stricter prefix) is always contained inside a shorter (less strict) prefix.
 
 \begin{thebibliography}{9}
 \bibitem{silk} 
