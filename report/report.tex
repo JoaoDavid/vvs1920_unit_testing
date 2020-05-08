@@ -12,6 +12,7 @@
 \usepackage{multicol}
 \usepackage{tabularx}
 \usepackage{makecell}
+\usepackage{amssymb}
 \graphicspath{ {./images/} }
 \sloppy
 
@@ -42,7 +43,7 @@
 \newpage
 \tableofcontents
 \newpage
-\section[Instruction Coverage - InstructionCoverageTest.java]{Instruction Coverage - \\ InstructionCoverageTest.java}
+\section[Instruction Coverage]{Instruction Coverage}
 \subsection{size()}
 \begin{lstlisting}
     public int size() {
@@ -292,7 +293,7 @@ public void delete(String key) {
 \end{table}
 
 \newpage
-\section{Edge Coverage - EdgeCoverageTest.java}
+\section{Edge Coverage}
 
 \begin{figure}[!htbp]
   	\centering
@@ -318,11 +319,11 @@ Graph Edges: [1,2], [1,3], [3,4], [3,5], [5,6], [6,7], [6,8], [8,9], [8,10], [10
 \end{tabular}
 \end{table}
 
-\section[Prime Path Coverage - PrimePathCoverageTest.java]{Prime Path Coverage - \\PrimePathCoverageTest.java}
+\section[Prime Path Coverage]{Prime Path Coverage}
 For the Prime Path Coverage, we used the graph coverage tool made available to us through the course's moodle page. With this we extracted all the possible prime paths, and all that paths needed in order to cover them, totaling 19 test cases according to the graph previously shown. All the data regarding this test coverage is shown in comments in the above indicated Java class.
 
 \newpage
-\section[All-Uses Coverage - AllUsesCoverageTest.java]{All-Uses Coverage - \\ AllUsesCoverageTest.java}
+\section[All-Uses Coverage]{All-Uses Coverage}
 
 \begin{table}[htb]
 \centering
@@ -394,11 +395,11 @@ x            & 10 & \makecell{[10,6,7], [10,6,8], [10,6,8,10], [10,6,8,9], \\\ [
 \end{table}
 
 
-\section[Logic-based Coverage - \\LogicBasedCoverage.java]{Logic-based Coverage - \\LogicBasedCoverage.java}
+\section[Logic-based Coverage]{Logic-based Coverage}
 
 For our Logic-based coverage we chose the Combinatorial Coverage (CoC) as it covers all the possible permutations of truth values of each clause. In order to guarantee that certain parts of the code is reached, and not only basing it off of truth values of clauses, we also added the reachability predicates from which we based our CoC off of. All the data regarding the analysis can be viewed in the Java class indicated above.
 
-\section{Base Choice Coverage - \\BaseChoiceCoverageTest.java}
+\section{Base Choice Coverage}
 Given the 3 criteria, we separated them in simple blocks that would not overlap each other so as to not have any ambiguous requirements:
 \begin{enumerate}
 	\item \textit{Trie already includes the new key}
@@ -428,8 +429,59 @@ The last test requirement \textbf{(true, true, true)} is unfeasible due to the f
 The tests used to cover the test requirements can be found in the above mentioned Java source file.
 
 \section{PIT Mutations}
+Since we are only covering the longestPrefixOf() method from the TST class, the PIT Tool had to be configured to avoid creating mutants for the other methods.
 
-\section[JUnit QuickCheck - TSTGeneratorTest.java]{JUnit QuickCheck - \\TSTGeneratorTest.java}
+In the PIT’s tab of the Run Configurations, set the following methods in the Excluded methods field:
+
+\begin{lstlisting}
+size, contains, get, put, delete, equals, keys, keysWithPrefix, collect, keysThatMatch
+\end{lstlisting} 
+
+Running every test class responsible for covering the resective coverage criteria gives the following results
+\renewcommand{\labelitemi}{$\blacksquare$}
+\renewcommand\labelitemii{$\square$}
+ \begin{itemize}
+   \item  Instruction Coverage
+   \begin{itemize}
+     \item {77 \% Mutation Coverage (10/13)}
+     \begin{itemize}
+       \item  183: changed condition boundary
+	   \item  185: negated conditional
+	   \item  186: negated conditional
+     \end{itemize}
+   \end{itemize}
+   \item  Edge Coverage
+   \begin{itemize}
+     \item {92\% Mutation Coverage (12/13)}
+     \begin{itemize}
+       \item  183: changed condition boundary
+     \end{itemize}
+   \end{itemize}
+   \item Prime Path Coverage
+   \begin{itemize}
+     \item {92\% Mutation Coverage (12/13)}
+     \begin{itemize}
+       \item  183: changed condition boundary
+     \end{itemize}
+   \end{itemize}
+  \item All-Uses Coverage
+   \begin{itemize}
+     \item {92\% Mutation Coverage (12/13)}
+     \begin{itemize}
+       \item  183: changed condition boundary
+     \end{itemize}
+   \end{itemize}
+   \item Logic-based test coverage
+   \begin{itemize}
+     \item {100\% Mutation Coverage (13/13)}
+     \begin{itemize}
+       \item  All mutants killed
+     \end{itemize}
+   \end{itemize}
+ \end{itemize}
+
+
+\section[JUnit QuickCheck]{JUnit QuickCheck}
 In order to test the properties given, we had to create both a Trie and a String generator.
 
 For the first property, we took all the key values from the randomly generated Trie, shuffled the keys and then inserted them back inside a new Trie. At the end we evaluate that this new Trie is equal in content to the original Trie.
