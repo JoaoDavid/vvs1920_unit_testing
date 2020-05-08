@@ -1,0 +1,19 @@
+\contentsline {section}{\numberline {1}Instruction Coverage - InstructionCoverageTest.java}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}size()}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}contains(String key)}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}get(String key)}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}put(String key, T val)}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}longestPrefixOf(String query)}{4}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}keys()}{5}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}keysWithPrefix(String prefix)}{6}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}keysThatMatch(String pattern)}{6}{subsection.1.8}%
+\contentsline {subsection}{\numberline {1.9}delete(String key)}{7}{subsection.1.9}%
+\contentsline {subsection}{\numberline {1.10}equals(Object obj)}{7}{subsection.1.10}%
+\contentsline {section}{\numberline {2}Edge Coverage - EdgeCoverageTest.java}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Test cases}{10}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Prime Path Coverage - PrimePathCoverageTest.java}{10}{section.3}%
+\contentsline {section}{\numberline {4}All-Uses Coverage - AllUsesCoverageTest.java}{11}{section.4}%
+\contentsline {section}{\numberline {5}Logic-based Coverage - \\LogicBasedCoverage.java}{14}{section.5}%
+\contentsline {section}{\numberline {6}Base Choice Coverage - \\BaseChoiceCoverageTest.java}{14}{section.6}%
+\contentsline {section}{\numberline {7}PIT Mutations}{15}{section.7}%
+\contentsline {section}{\numberline {8}JUnit QuickCheck - TSTGeneratorTest.java}{15}{section.8}%
