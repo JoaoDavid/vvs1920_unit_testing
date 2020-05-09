@@ -486,11 +486,12 @@ In order to test the properties given, we had to create both a Trie and a String
 
 For the first property, we took all the key values from the randomly generated Trie, shuffled the keys and then inserted them back inside a new Trie. At the end we evaluate that this new Trie is equal in content to the original Trie.
 
-For the second property, we removed all the keys from a Trie by using the implemented \textbf{delete()} function, evaluating that the size of the Trie is 0 after finishing the deletion process.
+For the second property, we removed all the keys from a Trie by using the implemented \textbf{delete()} function, after finishing the deletion process, the Trie must be equal to a just created (empty) Trie.
 
-For the third property, we generated both a random Trie and a String. We then created a new Trie and inserted all the values from the original Trie plus the randomly generated String, after which we remove the same String and asserted that the final Trie is equal to the original Trie.
+For the third property, we generated both a random Trie and a String. We then created a new (empty) Trie and inserted all the values from the original Trie, then we inserted the generated String into the original Trie, removing it afterwards and finally asserted that both Tries are equal.
 
-For the fourth and final property, we also generated a random Trie and String. The string would be inserted in portions into the Trie so that all the prefixes are inserted for later testing. For example, if we have the word \textit{generator} the following keys would be inserted into the Trie: \textit{generator}, \textit{generato}, \textit{generat}, ... , \textit{g}. After the insertion we then get all the key prefixes starting from the longest prefix to the shortest. With each prefix we test that the return of \textbf{keysWithPrefix(prefix)} from a longer (stricter prefix) is always contained inside a shorter (less strict) prefix.
+For the fourth and final property, we also generated a random Trie and String. The string would be inserted in portions into the Trie so that all the prefixes are inserted for later testing. For example, if we have the word \textit{generator} the following keys would be inserted into the Trie: \textit{generator}, \textit{generato}, \textit{generat}, ... , \textit{gen}, \textit{ge}, \textit{g}. 
+After the insertion we then get all the key prefixes starting from the longest prefix to the shortest. With each prefix we assert that the return of \textbf{keysWithPrefix(prefix)} from the previous (stricter prefix) is always contained inside the current shorter (less strict) prefix.
 \end{document}
 
 %%% Local Variables:
