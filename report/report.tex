@@ -397,7 +397,7 @@ x            & 10 & \makecell{[10,6,7], [10,6,8], [10,6,8,10], [10,6,8,9], \\\ [
 
 \section[Logic-based Coverage]{Logic-based Coverage}
 
-For our Logic-based coverage we chose the Combinatorial Coverage (CoC) as it covers all the possible permutations of truth values of each clause. In order to guarantee that certain parts of the code is reached, and not only basing it off of truth values of clauses, we also added the reachability predicates from which we based our CoC off of. All the data regarding the analysis can be viewed in the Java class indicated above.
+For our Logic-based coverage we chose the Combinatorial Coverage (CoC) as it covers all the possible combinations of truth values the clauses within a predicate. In order to guarantee that certain parts of the code is reached, and not only basing it off of truth values of clauses, we also added the reachability predicates from which we based our CoC off of. All the data regarding the analysis can be viewed in the LogicBasedTestCoverage Java class.
 
 \section{Base Choice Coverage}
 Given the 3 criteria, we separated them in simple blocks that would not overlap each other so as to not have any ambiguous requirements:
@@ -471,7 +471,7 @@ Running every test class responsible for covering the respective coverage criter
        \item  183: changed condition boundary
      \end{itemize}
    \end{itemize}
-   \item Logic-based test coverage
+   \item Logic-Based Coverage
    \begin{itemize}
      \item {100\% Mutation Coverage (13/13)}
      \begin{itemize}
@@ -480,6 +480,7 @@ Running every test class responsible for covering the respective coverage criter
    \end{itemize}
  \end{itemize}
 
+The mutants that survived the first four coverage tests are all related to if and while conditional expressions being mutated, this is not surprising because they do not specifically cover the values of truth of the clauses within the predicates, unlike the CoC coverage criteria that we used in the Logic-Based test coverage, this criteria verifies all combinations of truth values for each clause within each predicate. Thus killing all mutants that the other Coverage tests do not.
 
 \section[JUnit QuickCheck]{JUnit QuickCheck}
 In order to test the properties given, we had to create both a Trie and a String generator.
