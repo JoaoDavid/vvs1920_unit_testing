@@ -1,8 +1,5 @@
 package sut.properties;
 
-import java.util.HashMap;
-import java.util.Iterator;
-
 import com.pholser.junit.quickcheck.generator.GenerationStatus;
 import com.pholser.junit.quickcheck.generator.Generator;
 import com.pholser.junit.quickcheck.random.SourceOfRandomness;
