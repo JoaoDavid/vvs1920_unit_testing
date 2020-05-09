@@ -11,6 +11,8 @@ import org.junit.Test;
 import sut.TST;
 
 /**
+ * @author João David n49448, Ye Yang n49521
+ * 
  * The test methods within this class focus on the All Uses Coverage of the TST's longestPrefixOf method graph
  * 
  * Each test method has it's test path commented

@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {1.4}put(String key, T val)}{4}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}longestPrefixOf(String query)}{4}{subsection.1.5}%
 \contentsline {subsection}{\numberline {1.6}keys()}{5}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}keysWithPrefix(String prefix)}{5}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.7}keysWithPrefix(String prefix)}{6}{subsection.1.7}%
 \contentsline {subsection}{\numberline {1.8}keysThatMatch(String pattern)}{6}{subsection.1.8}%
 \contentsline {subsection}{\numberline {1.9}delete(String key)}{7}{subsection.1.9}%
 \contentsline {subsection}{\numberline {1.10}equals(Object obj)}{7}{subsection.1.10}%

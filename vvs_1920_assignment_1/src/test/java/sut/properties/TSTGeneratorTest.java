@@ -18,6 +18,12 @@ import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 
 import sut.TST;
 
+/**
+ * @author João David n49448, Ye Yang n49521
+ * 
+ * Property testing class
+ * 
+ */
 @RunWith(JUnitQuickcheck.class)
 public class TSTGeneratorTest {	
 

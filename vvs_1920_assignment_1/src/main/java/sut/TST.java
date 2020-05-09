@@ -125,8 +125,10 @@ public class TST<T> {
     }
     
     /**
+     * @author João David n49448, Ye Yang n49521
+     * 
      * Removes the key from the table, if the key exists
-     * otherwise won't change tha table's state
+     * otherwise won't change the table's state
      * @param key the key
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
@@ -140,6 +142,9 @@ public class TST<T> {
         }        
     }
 
+    /**
+     * @author João David n49448, Ye Yang n49521
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean equals(Object obj) {

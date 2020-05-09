@@ -6,6 +6,13 @@ import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 
 import sut.TST;
 
+/**
+ * @author João David n49448, Ye Yang n49521
+ * 
+ * TST Generator
+ * Number of elements inside the structure may vary between minPuts and maxPuts
+ * 
+ */
 public class TSTGenerator extends Generator<TST<Integer>>{
 	
 	public static final String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

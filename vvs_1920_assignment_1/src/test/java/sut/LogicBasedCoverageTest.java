@@ -9,6 +9,8 @@ import org.junit.Test;
 import sut.TST;
 
 /**
+ * @author João David n49448, Ye Yang n49521
+ * 
  * The test methods within this class focus on the Logic Based Coverage of the TST's longestPrefixOf method graph
  * The criteria chosen was the Combinatorial Coverage (CoC) because it covers all possible combinations of clause's truth values within each predicate
  * therefore it subsumes RACC, CAACC, GACC, CC and PC

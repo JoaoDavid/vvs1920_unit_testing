@@ -4,6 +4,14 @@ import com.pholser.junit.quickcheck.generator.GenerationStatus;
 import com.pholser.junit.quickcheck.generator.Generator;
 import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 
+/**
+ * @author João David n49448, Ye Yang n49521
+ * 
+ * String generator
+ * length varying from 1 to MAX_LEN
+ * chars ranging from code point MIN_CHAR_RANGE to MAX_CHAR_RANGE
+ * 
+ */
 public class MyStringGenerator extends Generator<String>{
 		
 	private static final int MAX_LEN = 40;

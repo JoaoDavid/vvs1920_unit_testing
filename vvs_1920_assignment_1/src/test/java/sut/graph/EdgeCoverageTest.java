@@ -10,6 +10,8 @@ import org.junit.Test;
 import sut.TST;
 
 /**
+ * @author João David n49448, Ye Yang n49521
+ * 
  * The test methods within this class focus on the Edge Coverage of the TST's longestPrefixOf method graph
  * An image of the graph analyzed is appended to this eclipse project
  * 

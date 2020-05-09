@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 /**
+ * @author João David n49448, Ye Yang n49521
+ * 
  * The test methods within this class focus on the Instruction Coverage of all the TST's public methods
  * 
  * By running this class as Coverage, and then expanding the TST class in the Coverage tab,
