@@ -10,7 +10,7 @@ import sut.TST;
 
 /**
  * The test methods within this class focus on the Logic Based Coverage of the TST's longestPrefixOf method graph
- * The criteria chosen was the Combinatorial Coverage (CoC) because it covers all possible combinations the of clause's truth values
+ * The criteria chosen was the Combinatorial Coverage (CoC) because it covers all possible combinations of clause's truth values within each predicate
  * therefore it subsumes RACC, CAACC, GACC, CC and PC
  * Since the method in study (longestPrefixOf) is highly complex, it's viable to opt for this criteria
  * 
